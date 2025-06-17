@@ -1,0 +1,391 @@
+/* ==========================================================================
+   Importação de Fontes
+   ========================================================================== */
+@font-face {
+    font-family: 'palisade';
+    src: url('../fontes/palisade/Palisade.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ==========================================================================
+   Reset e Estilos Base
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.5;
+    
+    /* Background */
+    background-image: url('../imagens/fundo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* ==========================================================================
+   Header e Navegação
+   ========================================================================== */
+.topo-menu {
+    /* Layout */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    
+    /* Visual */
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.topo-menu h1 {
+    /* Layout */
+    margin: 0;
+    padding: 0 1rem;
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+    
+    /* Tipografia */
+    font-family: 'palisade', system-ui, sans-serif;
+    font-size: clamp(2rem, 5vw, 5rem);
+    color: #ffffff;
+}
+
+/* Navegação */
+nav.menu {
+    /* Layout */
+    width: 100%;
+    max-width: 800px;
+    padding: 0;
+    
+    /* Tipografia */
+    color: #fff;
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    background-color: transparent;
+}
+
+nav.menu ul {
+    /* Layout */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    
+    /* Reset */
+    list-style-type: none;
+}
+
+nav.menu a {
+    /* Layout */
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    margin: 0.25rem;
+    border-radius: 25px;
+    
+    /* Visual */
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+nav.menu a:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Conteúdo Principal
+   ========================================================================== */
+main {
+    /* Layout */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: calc(100vh - 200px);
+    padding: 2rem 1rem;
+    
+    /* Visual */
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+}
+
+.projetos-container {
+    /* Layout */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    
+    /* Visual */
+    background-color: rgba(0, 0, 0, 0.4);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    color: #f1f1f1;
+}
+
+.projetos-container h2 {
+    font-family:  system-ui, sans-serif;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.projetos-descricao {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    color: #f1f1f1;
+}
+
+/* Grid de Projetos */
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.projeto-card {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    
+    /* Visual */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.projeto-card:hover {
+    transform: translateY(-5px);
+}
+
+.projeto-imagem {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.projeto-info {
+    padding: 1.5rem;
+}
+
+.projeto-info h3 {
+    font-family: system-ui, sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.projeto-info p {
+    margin-bottom: 1rem;
+    color: #f1f1f1;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.projeto-tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.projeto-tecnologias span {
+    padding: 0.25rem 0.75rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.projeto-link {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.projeto-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+footer {
+    /* Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    
+    /* Visual */
+    background-color: rgba(0, 0, 0, 0.5);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+}
+
+footer p {
+    /* Tipografia */
+    color: #ffffff;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    text-align: center;
+    opacity: 0.9;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+footer a {
+    /* Layout */
+    padding: 0.5rem 1rem;
+    
+    /* Tipografia */
+    color: #fff;
+    text-decoration: none;
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    transition: all 0.3s ease;
+    border-radius: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+footer a:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Media Queries
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .topo-menu {
+        flex-direction: column;
+        padding: 1rem 0.5rem;
+    }
+    
+    .topo-menu h1 {
+        font-size: clamp(2rem, 8vw, 4rem);
+    }
+    
+    nav.menu ul {
+        padding: 0.25rem;
+    }
+    
+    nav.menu a {
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+    }
+    
+    .projetos-container {
+        padding: 1.5rem;
+    }
+    
+    .projetos-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .topo-menu {
+        padding: 0.75rem 0.25rem;
+    }
+    
+    .topo-menu h1 {
+        font-size: clamp(1.8rem, 10vw, 2.5rem);
+    }
+    
+    nav.menu a {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+        width: 100%;
+        text-align: center;
+    }
+    
+    .projetos-container {
+        padding: 1rem;
+        border-radius: 15px;
+    }
+    
+    .projeto-info h3 {
+        font-size: 1.3rem;
+    }
+    
+    .projeto-info p {
+        font-size: 0.9rem;
+    }
+    
+    .social-links {
+        gap: 1rem;
+    }
+    
+    footer a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para telas muito pequenas */
+@media screen and (max-width: 320px) {
+    .topo-menu h1 {
+        font-size: 1.5rem;
+    }
+    
+    nav.menu a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    .projetos-container {
+        padding: 0.75rem;
+    }
+    
+    .projetos-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .projetos-descricao {
+        font-size: 0.9rem;
+    }
+}
