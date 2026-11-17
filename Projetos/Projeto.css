@@ -26,8 +26,6 @@ body {
     overflow-x: hidden;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.5;
-    
-    /* Background */
     background-image: url('../imagens/fundo.jpg');
     background-size: cover;
     background-position: center;
@@ -47,14 +45,17 @@ body {
     gap: 1rem;
     
     /* Visual */
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(126, 172, 255, 0.1) 28%, rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35), inset 0 -18px 28px rgba(255, 255, 255, 0.04), 0 20px 40px rgba(0, 0, 0, 0.16);
+    -webkit-backdrop-filter: blur(20px) saturate(1.7) brightness(1.08);
+    backdrop-filter: blur(5px) saturate(1.7) brightness(1.08);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
     padding: 1rem;
     position: sticky;
     top: 0;
     z-index: 1000;
+    overflow: hidden;
 }
 
 .topo-menu h1 {
@@ -107,14 +108,21 @@ nav.menu a {
     /* Visual */
     color: #fff;
     text-decoration: none;
-    background-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04) 45%, rgba(111, 144, 255, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28), inset 0 -10px 18px rgba(255, 255, 255, 0.04), 0 12px 22px rgba(0, 0, 0, 0.12);
+    -webkit-backdrop-filter: blur(16px) saturate(1.6);
+    backdrop-filter: blur(16px) saturate(1.6);
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
 nav.menu a:hover {
     color: #fff;
-    background-color: rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
     transform: translateY(-2px);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.09), 0 12px 22px rgba(0, 0, 0, 0.2);
 }
 
 /* ==========================================================================
@@ -129,9 +137,9 @@ main {
     padding: 2rem 1rem;
     
     /* Visual */
-    background-color: rgba(0, 0, 0, 0.2);
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.08);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
 }
 
 .projetos-container {
@@ -142,12 +150,15 @@ main {
     padding: 2rem;
     
     /* Visual */
-    background-color: rgba(0, 0, 0, 0.4);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(114, 156, 255, 0.08) 28%, rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.36), inset 0 -16px 24px rgba(255, 255, 255, 0.04), 0 18px 40px rgba(0, 0, 0, 0.2);
+    -webkit-backdrop-filter: blur(5px) saturate(1.7) brightness(1.1);
+    backdrop-filter: blur(5px) saturate(1.7) brightness(1.1);
     border-radius: 20px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     color: #f1f1f1;
+    position: relative;
+    overflow: hidden;
 }
 
 .projetos-container h2 {
@@ -168,80 +179,224 @@ main {
 /* Grid de Projetos */
 .projetos-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.2rem;
     margin-top: 2rem;
+    align-items: stretch;
 }
 
-.projeto-card {
-    /* Layout */
+.flip-card-container {
+    position: relative;
+    perspective: 1000px;
+    min-height: 460px;
+    height: 100%;
+    display: flex;
+}
+
+.flip-card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 460px;
+    transform-style: preserve-3d;
+    transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    display: block;
+}
+
+.flip-card-container:hover .flip-card,
+.flip-card-container:focus-within .flip-card {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 15px;
+    border-radius: 22px;
     overflow: hidden;
-    transition: transform 0.3s ease;
-    
-    /* Visual */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(116, 150, 255, 0.1) 35%, rgba(255, 255, 255, 0.04));
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32), inset 0 -14px 24px rgba(255, 255, 255, 0.04), 0 18px 36px rgba(0, 0, 0, 0.18);
+    -webkit-backdrop-filter: blur(18px) saturate(1.7) brightness(1.08);
+    backdrop-filter: blur(5px) saturate(1.7) brightness(1.08);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    height: 100%;
 }
 
-.projeto-card:hover {
-    transform: translateY(-5px);
+.card-front {
+    justify-content: flex-start;
 }
 
-.projeto-imagem {
+.card-back {
+    transform: rotateY(180deg);
+    background: linear-gradient(180deg, rgba(10, 13, 24, 0.96), rgba(13, 17, 28, 0.94));
+}
+
+.card-front figure,
+.card-back figure {
+    position: relative;
     width: 100%;
-    height: 200px;
+    height: 230px;
+    min-height: 230px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.02);
+    display: block;
+    padding: 1.1rem;
+}
+
+.img-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0));
+}
+
+.card-front img,
+.card-back img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+    filter: saturate(0.78) contrast(1.05) brightness(0.85);
+    position: relative;
+    z-index: 1;
+}
+
+.flip-card-container:nth-child(3) .card-front img,
+.flip-card-container:nth-child(3) .card-back img {
+    width: 100%;
+    height: 100%;
+    max-width: 420px;
+    max-height: 280px;
     object-fit: cover;
+    object-position: center;
+    border-radius: 18px;
 }
 
-.projeto-info {
-    padding: 1.5rem;
-}
-
-.projeto-info h3 {
-    font-family: system-ui, sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.card-front figcaption {
+    position: static;
+    display: block;
+    z-index: 2;
+    font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
     color: #ffffff;
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.7);
+    max-width: none;
+    line-height: 1.1;
+    padding: 0.9rem 1.2rem 0;
+    margin: 0;
 }
 
-.projeto-info p {
-    margin-bottom: 1rem;
-    color: #f1f1f1;
-    font-size: 1rem;
-    line-height: 1.6;
+.card-front-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem 1.2rem 1.2rem;
+    flex: 1;
 }
 
-.projeto-tecnologias {
+.card-front-info .projeto-titulo {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.card-front .card-list,
+.card-back .card-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 2;
 }
 
-.projeto-tecnologias span {
-    padding: 0.25rem 0.75rem;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
-    font-size: 0.9rem;
+.card-front .card-list li,
+.card-back .card-list li {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.card-list li {
+    border-radius: 999px;
+    padding: 0.45rem 0.8rem;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #edf5ff;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.card-back figure {
+    height: 52%;
+}
+
+.card-back-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 0.9rem;
+    height: 48%;
+    padding: 1.2rem 1.25rem 1.5rem;
+}
+
+.projeto-titulo {
     color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.card-back-content p {
+    color: #edf3ff;
+    font-size: 0.96rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.card-list-back {
+    margin: 0;
+    padding: 0;
+    justify-content: flex-start;
 }
 
 .projeto-link {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    background-color: rgba(255, 255, 255, 0.05);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.2rem;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(127, 167, 255, 0.12) 45%, rgba(255, 255, 255, 0.04));
     color: #ffffff;
     text-decoration: none;
-    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-weight: 600;
     transition: all 0.3s ease;
+    width: fit-content;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 25px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(14px) saturate(1.4);
+    -webkit-backdrop-filter: blur(14px) saturate(1.4);
 }
 
 .projeto-link:hover {
-    background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.28);
+    background: linear-gradient(135deg, rgba(131, 203, 255, 0.35), rgba(73, 109, 255, 0.48));
+}
+
+.projeto-link.disabled {
+    pointer-events: none;
+    opacity: 0.75;
+    cursor: default;
 }
 
 /* ==========================================================================
@@ -257,9 +412,11 @@ footer {
     padding: 1.5rem;
     
     /* Visual */
-    background-color: rgba(0, 0, 0, 0.5);
-    -webkit-backdrop-filter: blur(5px);
-    backdrop-filter: blur(5px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(118, 162, 255, 0.06) 35%, rgba(255, 255, 255, 0.02));
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(18px) saturate(1.5);
+    backdrop-filter: blur(18px) saturate(1.5);
 }
 
 footer p {
@@ -287,7 +444,11 @@ footer a {
     font-size: clamp(0.9rem, 1.5vw, 1.1rem);
     transition: all 0.3s ease;
     border-radius: 20px;
-    background-color: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04) 45%, rgba(116, 150, 255, 0.08));
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -10px 18px rgba(255, 255, 255, 0.03), 0 10px 18px rgba(0, 0, 0, 0.12);
+    -webkit-backdrop-filter: blur(14px) saturate(1.5);
+    backdrop-filter: blur(14px) saturate(1.5);
 }
 
 footer a:hover {
