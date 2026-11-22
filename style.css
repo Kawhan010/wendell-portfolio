@@ -317,8 +317,8 @@ section h1 {
 
 section .habilidades-lista {
     /* Layout */
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     justify-content: center;
     gap: 0.8rem;
     list-style: none;
@@ -327,12 +327,13 @@ section .habilidades-lista {
 
 section .habilidade-item {
     /* Layout */
-    padding: 0.8rem 1.4rem;
+    padding: 1.15rem 1.1rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
     justify-content: center;
     gap: 0.8rem;
-    min-width: 210px;
+    min-width: 0;
     --skill-level: 0%;
     
     /* Visual */
@@ -341,7 +342,7 @@ section .habilidade-item {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -12px 18px rgba(255, 255, 255, 0.03), 0 10px 20px rgba(0, 0, 0, 0.12);
     -webkit-backdrop-filter: blur(16px) saturate(1.5);
     backdrop-filter: blur(16px) saturate(1.5);
-    border-radius: 25px;
+    border-radius: 18px;
     color: #ffffff;
     font-size: clamp(1rem, 1.5vw, 1.2rem);
     transition: all 0.3s ease;
@@ -350,34 +351,64 @@ section .habilidade-item {
     isolation: isolate;
 }
 
-section .habilidade-item::before {
-    content: "";
+.habilidade-liquido {
     position: absolute;
-    inset: 0 auto 0 0;
-    width: 0;
-    background: linear-gradient(90deg, rgba(96, 167, 255, 0.38), rgba(109, 255, 205, 0.26), rgba(255, 255, 255, 0.03));
-    border-radius: inherit;
     z-index: 0;
-    transition: width 1s ease;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0;
+    background:
+        radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.22) 0 7%, transparent 8%),
+        radial-gradient(circle at 76% 35%, rgba(255, 255, 255, 0.16) 0 5%, transparent 6%),
+        linear-gradient(135deg, rgba(84, 184, 255, 0.62), rgba(84, 218, 199, 0.48));
+    box-shadow: inset 0 12px 28px rgba(190, 240, 255, 0.12);
+    transition: height 1.1s cubic-bezier(.22,.61,.36,1);
+    overflow: hidden;
 }
 
-section .habilidade-item::after {
+.habilidade-liquido::before,
+.habilidade-liquido::after {
     content: "";
     position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: 4px;
-    border-radius: 999px;
-    background: linear-gradient(90deg, #8fd3ff, #7effd4, #d7f7ff);
-    box-shadow: 0 0 16px rgba(127, 255, 212, 0.5);
-    transition: width 1s ease;
-    z-index: 1;
+    left: -15%;
+    top: -9px;
+    width: 130%;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(184, 239, 255, 0.92);
+    opacity: 0;
+    transform: rotate(-1deg);
+}
+
+.habilidade-liquido::after {
+    top: -12px;
+    background: rgba(116, 222, 215, 0.48);
+    transform: rotate(2deg);
+}
+
+.habilidade-item:hover .habilidade-liquido,
+.habilidade-item:focus-visible .habilidade-liquido {
+    height: var(--skill-level);
+}
+
+.habilidade-item:hover .habilidade-liquido::before,
+.habilidade-item:hover .habilidade-liquido::after,
+.habilidade-item:focus-visible .habilidade-liquido::before,
+.habilidade-item:focus-visible .habilidade-liquido::after {
+    opacity: 1;
+    animation: onda-liquida 0.28s ease-in-out infinite alternate;
+}
+
+@keyframes onda-liquida {
+    from { transform: translateX(-2%) rotate(-1deg) scaleY(0.75); }
+    to { transform: translateX(3%) rotate(2deg) scaleY(1.12); }
 }
 
 .habilidade-label {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     position: relative;
     z-index: 1;
@@ -390,13 +421,25 @@ section .habilidade-item img {
     vertical-align: middle;
 }
 
+.habilidade-status {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 1;
+}
+
+.habilidade-nivel {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
 .habilidade-percentual {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%, 120%) scale(0.9);
-    opacity: 0;
-    padding: 0.4rem 0.7rem;
+    padding: 0.28rem 0.58rem;
     border-radius: 999px;
     background: rgba(27, 91, 255, 0.95);
     color: #ffffff;
@@ -404,10 +447,16 @@ section .habilidade-item img {
     font-weight: 700;
     letter-spacing: 0.04em;
     box-shadow: 0 12px 28px rgba(27, 91, 255, 0.38);
-    transition: all 0.3s ease;
-    pointer-events: none;
     white-space: nowrap;
-    z-index: 2;
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .habilidade-progresso span,
+    .habilidade-progresso span::after {
+        transition: none;
+        animation: none;
+    }
 }
 
 section .habilidade-item:hover {
@@ -415,15 +464,11 @@ section .habilidade-item:hover {
     transform: translateY(-2px);
 }
 
-section .habilidade-item:hover::before,
-section .habilidade-item:hover::after {
-    width: var(--skill-level);
+section .habilidade-item:focus-visible {
+    outline: 2px solid rgba(164, 226, 255, 0.95);
+    outline-offset: 4px;
 }
 
-section .habilidade-item:hover .habilidade-percentual {
-    opacity: 1;
-    transform: translate(-50%, calc(100% + 0.65rem)) scale(1);
-}
 
 /* ==========================================================================
    Rodapé
@@ -541,7 +586,11 @@ footer a:hover {
     }
     
     section .habilidade-item {
-        padding: 0.6rem 1.2rem;
+        padding: 0.9rem 1rem 1rem;
+    }
+
+    section .habilidades-lista {
+        grid-template-columns: 1fr;
     }
 }
 
