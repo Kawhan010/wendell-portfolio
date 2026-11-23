@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 650" role="img" aria-labelledby="title desc">
+  <title id="title">Prévia da calculadora</title>
+  <desc id="desc">Calculadora escura com visor e botões numéricos em tons de cinza e verde água.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#17243b"/>
+      <stop offset="0.58" stop-color="#0b1222"/>
+      <stop offset="1" stop-color="#081a24"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#202d40"/>
+      <stop offset="1" stop-color="#111a2b"/>
+    </linearGradient>
+    <linearGradient id="key" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#747474"/>
+      <stop offset="0.48" stop-color="#343434"/>
+      <stop offset="1" stop-color="#090b0f"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#37cdb7" stop-opacity=".17"/>
+      <stop offset="1" stop-color="#37cdb7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-40%" y="-30%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020611" flood-opacity=".55"/>
+    </filter>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M36 0H0V36" fill="none" stroke="#9cb7e4" stroke-opacity=".045" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="650" fill="url(#background)"/>
+  <rect width="1000" height="650" fill="url(#grid)"/>
+  <ellipse cx="265" cy="106" rx="270" ry="210" fill="url(#glow)"/>
+  <ellipse cx="790" cy="560" rx="330" ry="260" fill="url(#glow)" opacity=".6"/>
+
+  <g filter="url(#shadow)">
+    <rect x="324" y="48" width="352" height="554" rx="27" fill="url(#panel)" stroke="#3b4a61" stroke-opacity=".75" stroke-width="2"/>
+    <text x="354" y="101" fill="#60e6cb" font-family="system-ui,Segoe UI,sans-serif" font-size="16" font-weight="800" letter-spacing="2.5">CALCULADORA</text>
+    <text x="354" y="136" fill="#f4f7fb" font-family="system-ui,Segoe UI,sans-serif" font-size="21" font-weight="650">Conta simples, resultado rápido.</text>
+    <rect x="354" y="161" width="292" height="80" rx="14" fill="#080d17" stroke="#28354b" stroke-opacity=".55"/>
+    <text x="617" y="218" text-anchor="end" fill="#f4f7fb" font-family="system-ui,Segoe UI,sans-serif" font-size="30" font-weight="600">128 ÷ 4</text>
+
+    <g font-family="system-ui,Segoe UI,sans-serif" font-size="22" font-weight="700" text-anchor="middle" dominant-baseline="central">
+      <g fill="url(#key)" stroke="#a7b6ce" stroke-opacity=".15">
+        <rect x="354" y="261" width="65" height="55" rx="11"/><rect x="429" y="261" width="65" height="55" rx="11"/><rect x="505" y="261" width="65" height="55" rx="11"/><rect x="581" y="261" width="65" height="55" rx="11"/>
+        <rect x="354" y="326" width="65" height="55" rx="11"/><rect x="429" y="326" width="65" height="55" rx="11"/><rect x="505" y="326" width="65" height="55" rx="11"/><rect x="581" y="326" width="65" height="55" rx="11"/>
+        <rect x="354" y="391" width="65" height="55" rx="11"/><rect x="429" y="391" width="65" height="55" rx="11"/><rect x="505" y="391" width="65" height="55" rx="11"/><rect x="581" y="391" width="65" height="55" rx="11"/>
+        <rect x="354" y="456" width="65" height="55" rx="11"/><rect x="429" y="456" width="65" height="55" rx="11"/><rect x="505" y="456" width="65" height="55" rx="11"/><rect x="581" y="456" width="65" height="55" rx="11"/>
+        <rect x="354" y="521" width="140" height="55" rx="11"/><rect x="505" y="521" width="65" height="55" rx="11"/>
+      </g>
+      <g fill="#f2f6fb">
+        <text x="386" y="289">C</text><text x="461" y="289" fill="#66e8cf">‹</text><text x="537" y="289" fill="#83b9ff">÷</text><text x="613" y="289" fill="#83b9ff">×</text>
+        <text x="386" y="354">7</text><text x="461" y="354">8</text><text x="537" y="354">9</text><text x="613" y="354" fill="#83b9ff">−</text>
+        <text x="386" y="419">4</text><text x="461" y="419">5</text><text x="537" y="419">6</text><text x="613" y="419" fill="#83b9ff">+</text>
+        <text x="386" y="484">1</text><text x="461" y="484">2</text><text x="537" y="484">3</text><text x="613" y="484" fill="#83b9ff">=</text>
+        <text x="424" y="549">0</text><text x="537" y="549">.</text>
+      </g>
+    </g>
+  </g>
+</svg>
